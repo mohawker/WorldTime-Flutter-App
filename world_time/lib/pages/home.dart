@@ -14,8 +14,16 @@ class _HomeState extends State<Home> {
     print(data);
 
     return Scaffold(
-        backgroundColor: data['isDaytime'] ? Colors.white : Colors.grey[900],
-        body: SafeArea(
+      body: Container(
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+              colors: data['isDaytime'] ? [Colors.white, Colors.lightBlueAccent] : [Colors.black, Colors.red],
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter,
+              stops: [0.2,1],
+          ),
+        ),
+        child: SafeArea(
           child: Padding(
             padding: const EdgeInsets.fromLTRB(0, 120, 0, 0),
             child: Column(
@@ -26,13 +34,9 @@ class _HomeState extends State<Home> {
                   },
                   icon: Icon(
                     Icons.edit_location,
-                    color: data['isDaytime'] ? Colors.black : Colors.white,
                   ),
                   label: Text(
                     'Edit Location',
-                    style: TextStyle(
-                      color: data['isDaytime'] ? Colors.black : Colors.white,
-                    )
                   ),
                   color: Colors.yellow,
                 ),
@@ -58,6 +62,8 @@ class _HomeState extends State<Home> {
               ],
             ),
           ),
-        ));
+        ),
+      ),
+    );
   }
 }
